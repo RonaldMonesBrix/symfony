@@ -35,5 +35,4 @@ CMD service mysql start
 CMD service ssh start
 
 COPY data/start.sh /start.sh
-RUN ["./start.sh"]
 EXPOSE 80 443 22
