@@ -1,0 +1,5 @@
+brix    ALL=NOPASSWD:/usr/bin/ant restore-permissions* -Denv=*
+brix    ALL=NOPASSWD:/usr/bin/ant revert-permissions* -Denv=*
+brix    ALL=NOPASSWD:/usr/bin/crontab -l -u www-data
+brix    ALL=NOPASSWD:/usr/bin/crontab -e -u www-data
+brix    ALL=(www-data) NOPASSWD:ALL
