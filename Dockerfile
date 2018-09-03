@@ -23,6 +23,7 @@ COPY data/xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
 
 RUN phpenmod -v 7.1 brix
 RUN phpenmod -v 7.1 xdebug
+RUN update-alternatives --set php /usr/bin/php7.1
 
 RUN adduser brix --disabled-password --gecos GECOS
 RUN usermod -a -G adm brix
@@ -36,6 +37,7 @@ RUN echo "include /etc/redis/brix.conf" >> /etc/redis/redis.conf
 RUN mkdir /var/run/mysqld
 RUN chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 COPY data/mysql.sh /mysql.sh
+
 EXPOSE 80 443 22 9000
 COPY data/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
