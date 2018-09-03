@@ -18,6 +18,12 @@ RUN a2ensite symfony
 RUN a2enmod ssl
 RUN a2enmod rewrite
 
+COPY data/brix.ini /etc/php/7.1/mods-available/30-brix.ini
+COPY data/xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
+
+RUN phpenmod -v 7.1 30-brix
+RUN phpenmod -v 7.1 xdebug
+
 RUN adduser brix --disabled-password --gecos GECOS
 RUN usermod -a -G adm brix
 RUN mkdir /var/www/html/web
@@ -30,6 +36,6 @@ RUN echo "include /etc/redis/brix.conf" >> /etc/redis/redis.conf
 RUN mkdir /var/run/mysqld
 RUN chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 COPY data/mysql.sh /mysql.sh
-EXPOSE 80 443 22
+EXPOSE 80 443 22 9000
 COPY data/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
