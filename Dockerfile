@@ -18,10 +18,10 @@ RUN a2ensite symfony
 RUN a2enmod ssl
 RUN a2enmod rewrite
 
-COPY data/brix.ini /etc/php/7.1/mods-available/30-brix.ini
+COPY data/brix.ini /etc/php/7.1/mods-available/brix.ini
 COPY data/xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
 
-RUN phpenmod -v 7.1 30-brix
+RUN phpenmod -v 7.1 brix
 RUN phpenmod -v 7.1 xdebug
 
 RUN adduser brix --disabled-password --gecos GECOS
